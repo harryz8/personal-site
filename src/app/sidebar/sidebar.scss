@@ -1,0 +1,22 @@
+.side_button {
+    all: unset;
+    display: inline-block;
+    cursor: pointer;
+    padding: 0.5em;
+    border-radius: 3em;
+    border: 0.3em dashed black;
+    outline: none;
+    background-color: inherit;
+    width: fit-content;
+    box-shadow: none;
+    margin: 2em;
+    font-weight: bolder;
+}
+
+#sidebar {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    height: calc(100dvh - 4em);
+    border-right: solid black 2px;
+    width: 100%;
+}
