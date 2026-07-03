@@ -1,0 +1,21 @@
+.outside {
+    padding-top: 4em;
+    padding-bottom: 4em;
+    text-align: center;
+}
+
+.pfp {
+    border-radius: 50%;
+}
+
+#profile-info {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#profile {
+    margin-left: 15%;
+    margin-right: 15%;
+}
