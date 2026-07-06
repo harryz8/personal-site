@@ -1,7 +1,14 @@
 <div id="sidebar" class="container-fluid">
     <div id="sidebar_inner" class="container-fluid center">
         <div class="row align-middle" style="justify-content: center;">
-            <button #bt_1 class="side_button" type="button">Hello World</button>
+            <ul>
+                <li class="li-button" [ngClass]="{'li-button-selected': this.path === ''}" routerLink="/">
+                    <button #bt_1 class="side_button" type="button">Profile</button>
+                </li>
+                <li class="li-button" [ngClass]="{'li-button-selected': this.path === 'timeline'}" routerLink="/timeline">
+                    <button #bt_1 class="side_button" type="button">Timeline</button>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
