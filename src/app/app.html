@@ -1,9 +1,11 @@
-<div class="container-fluid h-100" style="background-color: #f27f3d;">
-  <div class="row">
-    <div class="col-md-2 h-100">
-      <app-sidebar class="h-100"></app-sidebar>
+<div id="main" class="container-fluid d-flex flex-column" style="background-color: #f27f3d;">
+  <div class="row flex-fill d-flex align-items-stretch">
+    <div class="col-md-2 d-flex flex-column justify-content-center">
+      <div class="row">
+        <app-sidebar></app-sidebar>
+      </div>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-10 d-flex flex-column">
       <router-outlet />
     </div>
   </div>

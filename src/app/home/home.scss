@@ -10,7 +10,6 @@
 
 #profile-info {
     display: flex;
-    height: 100%;
     align-items: center;
     justify-content: center;
 }
@@ -18,4 +17,44 @@
 #profile {
     margin-left: 15%;
     margin-right: 15%;
+}
+
+fa-icon {
+    font-size: 2em;
+}
+
+.button_a {
+    background-color: var(--bs-body-color);
+    border-radius: 0.2em;
+    color: #f27f3d;
+    font-size: 1.2em;
+    text-decoration: none;
+    padding: 0.2em;
+}
+
+.contact-links {
+    color: var(--bs-body-color);
+}
+
+.collapse-horizontal {
+    height: auto !important;
+    width: 0;
+    overflow: hidden;
+    transition: width .35s ease;
+    white-space: nowrap;
+    min-width: 0 !important;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+}
+
+.collapse-horizontal.show {
+  width: 14em;
+  visibility: visible;
+}
+
+.collapser {
+    text-align: left;
+    align-items: center;
+    font-weight: 300;
+    align-content: center;
 }

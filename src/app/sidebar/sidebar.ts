@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'
 import { RouterLink } from '@angular/router';
 
@@ -13,11 +13,12 @@ export class Sidebar {
 
   path: string = "";
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private router : Router) {}
 
   ngOnInit(): void {
-    this.route.url.subscribe(url => {
-      this.path = url[0].path;
+    this.path = this.router.url;
+    this.router.events.subscribe(() => {
+      this.path = this.router.url;
     });
   }
 }

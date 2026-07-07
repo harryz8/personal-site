@@ -38,13 +38,12 @@
 #sidebar {
     margin-top: 2em;
     margin-bottom: 2em;
-    height: calc(100dvh - 4em);
     width: 100%;
+    min-height: fit-content;
 }
 
 #sidebar_inner {
     display: flex;
-    height: 100%;
     align-items: center;
     justify-content: left;
 }

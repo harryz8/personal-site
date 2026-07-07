@@ -1,7 +1,7 @@
-<div class="outside">
-    <h1>About Me</h1>
-    <div class="container">
+<div class="row outside h-100 w-100">
+    <div class="col-md-12">
         <div id="profile" class="row">
+            <h1>About Me</h1>
             <div class="col-md-8 d-flex flex-column justify-content-center">
                 <div class="row"><h4>Hi, I'm Harry</h4></div>
                 <div class="row"><p>Student in Computer Science at the University of Birmingham &#x1F1EC;&#x1F1E7;<br />Web Development | AI | Computer Enthusiast</p></div>
@@ -10,9 +10,28 @@
                 <img class="pfp" src="/images/pfp.jpg" width=200 height=200 />
             </div>
         </div>
+        <div id="hire_info" class="row justify-content-center">
+            <h1>Hire Me!</h1>
+            <div style="margin-bottom: 1em;"><a class="button_a" href="https://docs.google.com/document/d/1-N2ESBefLvTB9VmqQyilhvnWzbDZRBoygS62cZ4Mc3E/edit?usp=sharing">View my CV</a></div>
+            <h4>Contact:</h4>
+            <div class="col-md-1">
+                <a id="linkedin" class="contact-links" href="http://linkedin.com/in/harry-zoeftig-1a4395352" (mouseover)="toggle_linkedin()"><fa-icon [icon]="falinkedIn" /></a>
+            </div>
+            <div #linkedin_info="ngbCollapse" [(ngbCollapse)]="isLinkedinCollapsed" (shown)="onLinkedinShown()" class="collapser col-md-3 collapse-horizontal flex-shrink-0">
+                <div class="row flex-shrink-0">harry-zoeftig-1a4395352</div>
+            </div>
+            <div class="col-md-1">
+                <a class="contact-links" href="mailto:harry.zoeftig@outlook.com" (mouseover)="toggle_email()"><fa-icon [icon]="faSquareEnvelope" /></a>
+            </div>
+            <div #email_info="ngbCollapse" [(ngbCollapse)]="isEmailCollapsed" (shown)="onEmailShown()" class="collapser col-md-3 collapse-horizontal">
+                <div class="row">harry.zoeftig@outlook.com</div>
+            </div>
+            <div class="col-md-1">
+                <a class="contact-links" href="tel:+447533863284" (mouseover)="toggle_phone()"><fa-icon [icon]="faSquarePhone" /></a>
+            </div>
+            <div #phone_info="ngbCollapse" [(ngbCollapse)]="isPhoneCollapsed" (shown)="onPhoneShown()" class="collapser col-md-3 collapse-horizontal">
+                <div class="row">+44 7533 863284</div>
+            </div>
+        </div>
     </div>
-    <h1>Featured Projects</h1>
-    <h1>Hire Me!</h1>
-    <a class="button_a" href="https://docs.google.com/document/d/1IEVt4aNG069AploC86WHvBk4Yuq7Ww5upJh_99ZiCtU/edit?usp=sharing">View my CV</a>
-    <br /><br />
 </div>
