@@ -17,57 +17,12 @@ export class Home {
   faSquarePhone = faSquarePhone;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
   faGithub = faSquareGithub;
-  isLinkedinCollapsed = true;
-  isEmailCollapsed = true;
-  isPhoneCollapsed = true;
-  isGithubCollapsed = true;
-
-  @ViewChild('linkedin_info') linkedin_info : NgbCollapse = {} as NgbCollapse;
-  @ViewChild('email_info') email_info : NgbCollapse = {} as NgbCollapse;
-  @ViewChild('phone_info') phone_info : NgbCollapse = {} as NgbCollapse;
-  @ViewChild('github_info') github_info : NgbCollapse = {} as NgbCollapse;
 
   constructor(ngbConfig: NgbConfig) {
 
   }
 
-  onLinkedinShown() : void {
-    setTimeout(() => this.linkedin_info.toggle(), 3000)
-  }
-
-  onEmailShown() : void {
-    setTimeout(() => this.email_info.toggle(), 3000)
-  }
-
-  onPhoneShown() : void {
-    setTimeout(() => this.phone_info.toggle(), 3000)
-  }
-
-  onGithubShown() : void {
-    setTimeout(() => this.github_info.toggle(), 3000)
-  }
-
-  toggle_linkedin() : void {
-    if (this.isLinkedinCollapsed) {
-      this.linkedin_info.toggle();
-    }
-  }
-
-  toggle_email() : void {
-    if (this.isEmailCollapsed) {
-      this.email_info.toggle();
-    }
-  }
-
-  toggle_phone() : void {
-    if (this.isPhoneCollapsed) {
-      this.phone_info.toggle();
-    }
-  }
-
-  toggle_github() : void {
-    if (this.isGithubCollapsed) {
-      this.github_info.toggle();
-    }
+  openCV() {
+    window.location.href = "https://docs.google.com/document/d/1-N2ESBefLvTB9VmqQyilhvnWzbDZRBoygS62cZ4Mc3E/edit?usp=sharing";
   }
 }

@@ -3,10 +3,16 @@
         <div class="row align-middle" style="justify-content: center;">
             <ul>
                 <li class="li-button" [ngClass]="{'li-button-selected': this.path === '/'}" routerLink="/">
-                    <button #bt_1 class="side_button" type="button">Profile</button>
+                    <button #bt_1 class="side_button" type="button">
+                        @if (this.path === '/') {*}
+                        Profile
+                    </button>
                 </li>
                 <li class="li-button" [ngClass]="{'li-button-selected': this.path === '/timeline'}" routerLink="/timeline">
-                    <button #bt_1 class="side_button" type="button">Timeline</button>
+                    <button #bt_1 class="side_button" type="button">
+                        @if (this.path === '/timeline') {*}
+                        Timeline
+                    </button>
                 </li>
             </ul>
         </div>

@@ -9,33 +9,20 @@
                 <img class="display-div" src="/images/pfp.jpg" width=200 height=200 />
             </div>
         </div>
-        <div id="hire_info" class="row justify-content-center">
-            <h1>Hire Me!</h1>
-            <div style="margin-bottom: 1em;"><a class="display-div button-a" href="https://docs.google.com/document/d/1-N2ESBefLvTB9VmqQyilhvnWzbDZRBoygS62cZ4Mc3E/edit?usp=sharing">View my CV</a></div>
-            <h4>Contact:</h4>
-            <div class="col-md-1">
-                <a id="linkedin" class="contact-links" href="http://linkedin.com/in/harry-zoeftig-1a4395352" (mouseover)="toggle_linkedin()"><fa-icon [icon]="falinkedIn" /></a>
+        <div id="hire_info" class="row justify-content-center" style="margin-top: 2em;">
+            <div class="col-md-3 display-div d-flex flex-column justify-content-center">
+                <div class="row"><p style="text-align: start; background-color: #FFE62D">Contact Info:</p></div>
+                <div class="row  d-flex justify-content-center">
+                    <div class="col-md-6" style="background-color: #02FEE4; margin: 1em; width: 8em; height: 8em;"><a href="http://linkedin.com/in/harry-zoeftig-1a4395352"><fa-icon [icon]="falinkedIn" /></a></div>
+                    <div class="col-md-6 ml-auto" style="background-color: #3E1340; margin: 1em; width: 8em; height: 8em;"><a href="https://github.com/harryz8"><fa-icon [icon]="faGithub" /></a></div>
+                </div>
+                <div class="row  d-flex justify-content-center">
+                    <div class="col-md-6" style="background-color: #F23CA6; margin: 1em; width: 8em; height: 8em;"><a href="mailto:harry.zoeftig@outlook.com"><fa-icon [icon]="faSquareEnvelope" /></a></div>
+                    <div class="col-md-6 ml-auto" style="background-color: #FF9535; margin: 1em; width: 8em; height: 8em;"><a href="tel:+447533863284"><fa-icon [icon]="faSquarePhone" /></a></div>
+                </div>
             </div>
-            <div #linkedin_info="ngbCollapse" [(ngbCollapse)]="isLinkedinCollapsed" (shown)="onLinkedinShown()" class="collapser col-md-3 collapse-horizontal flex-shrink-0">
-                <div class="row flex-shrink-0">harry-zoeftig-1a4395352</div>
-            </div>
-            <div class="col-md-1">
-                <a id="github" class="contact-links" href="https://github.com/harryz8" (mouseover)="toggle_github()"><fa-icon [icon]="faGithub" /></a>
-            </div>
-            <div #github_info="ngbCollapse" [(ngbCollapse)]="isGithubCollapsed" (shown)="onGithubShown()" class="collapser col-md-3 collapse-horizontal flex-shrink-0">
-                <div class="row flex-shrink-0">harryz8</div>
-            </div>
-            <div class="col-md-1">
-                <a class="contact-links" href="mailto:harry.zoeftig@outlook.com" (mouseover)="toggle_email()"><fa-icon [icon]="faSquareEnvelope" /></a>
-            </div>
-            <div #email_info="ngbCollapse" [(ngbCollapse)]="isEmailCollapsed" (shown)="onEmailShown()" class="collapser col-md-3 collapse-horizontal">
-                <div class="row">harry.zoeftig@outlook.com</div>
-            </div>
-            <div class="col-md-1">
-                <a class="contact-links" href="tel:+447533863284" (mouseover)="toggle_phone()"><fa-icon [icon]="faSquarePhone" /></a>
-            </div>
-            <div #phone_info="ngbCollapse" [(ngbCollapse)]="isPhoneCollapsed" (shown)="onPhoneShown()" class="collapser col-md-3 collapse-horizontal">
-                <div class="row">+44 7533 863284</div>
+            <div class="col-md-6">
+                <div id="hire-me" class="button-a display-div" (click)="openCV()">Hire Me!</div>
             </div>
         </div>
     </div>

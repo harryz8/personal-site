@@ -1,3 +1,10 @@
 #main {
     min-height: 100dvh;
 }
+
+#title-bar {
+    text-align: start;
+    padding: 0.2em;
+    font-weight: 900;
+    background-image: linear-gradient(rgb(131, 160, 255) 0, rgb(194, 240, 255) 20%, rgb(194, 240, 255) 50%, rgb(194, 240, 255) 80%, rgb(131, 160, 255) 100%);
+}

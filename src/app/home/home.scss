@@ -67,3 +67,20 @@ fa-icon {
     padding: 0.5em;
     box-shadow: 2px 2px white, 10px 10px black;
 }
+
+#hire-me {
+    font-weight: bolder;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    font-size: x-large;
+    cursor: pointer;
+    background-image:   repeating-linear-gradient(45deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%),
+                        linear-gradient(90deg, #0000 0, #01DC03 20%, #01DC03, #01DC03 80%, #0000 100%),
+                        repeating-linear-gradient(135deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%);
+}
+
+fa-icon {
+    font-size: 5em;
+    color: white;
+}
