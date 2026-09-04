@@ -26,7 +26,6 @@ fa-icon {
 .button_a {
     background-color: var(--bs-body-color);
     border-radius: 0.2em;
-    color: #f27f3d;
     font-size: 1.2em;
     text-decoration: none;
     padding: 0.2em;
@@ -57,4 +56,14 @@ fa-icon {
     align-items: center;
     font-weight: 300;
     align-content: center;
+}
+
+#personal_info {
+    background-image: repeating-linear-gradient(45deg, #0000 0, #0000 0.45%, rgb(196, 196, 196) 0.5%, #0000 0.55%, #0000 1%);
+    background-color: rgb(223, 255, 255);
+}
+
+.button-a {
+    padding: 0.5em;
+    box-shadow: 2px 2px white, 10px 10px black;
 }

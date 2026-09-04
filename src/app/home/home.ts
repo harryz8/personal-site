@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faSquareLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faSquareLinkedin, faSquareGithub } from '@fortawesome/free-brands-svg-icons';
 import { faSquareEnvelope, faSquarePhone, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
@@ -16,13 +16,16 @@ export class Home {
   faSquareEnvelope = faSquareEnvelope;
   faSquarePhone = faSquarePhone;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
+  faGithub = faSquareGithub;
   isLinkedinCollapsed = true;
   isEmailCollapsed = true;
   isPhoneCollapsed = true;
+  isGithubCollapsed = true;
 
   @ViewChild('linkedin_info') linkedin_info : NgbCollapse = {} as NgbCollapse;
   @ViewChild('email_info') email_info : NgbCollapse = {} as NgbCollapse;
   @ViewChild('phone_info') phone_info : NgbCollapse = {} as NgbCollapse;
+  @ViewChild('github_info') github_info : NgbCollapse = {} as NgbCollapse;
 
   constructor(ngbConfig: NgbConfig) {
 
@@ -40,6 +43,10 @@ export class Home {
     setTimeout(() => this.phone_info.toggle(), 3000)
   }
 
+  onGithubShown() : void {
+    setTimeout(() => this.github_info.toggle(), 3000)
+  }
+
   toggle_linkedin() : void {
     if (this.isLinkedinCollapsed) {
       this.linkedin_info.toggle();
@@ -55,6 +62,12 @@ export class Home {
   toggle_phone() : void {
     if (this.isPhoneCollapsed) {
       this.phone_info.toggle();
+    }
+  }
+
+  toggle_github() : void {
+    if (this.isGithubCollapsed) {
+      this.github_info.toggle();
     }
   }
 }
