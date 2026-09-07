@@ -12,17 +12,18 @@
         <div id="hire_info" class="row justify-content-center" style="margin-top: 2em;">
             <div class="col-md-3 display-div d-flex flex-column justify-content-center">
                 <div class="row"><p style="text-align: start; background-color: #FFE62D">Contact Info:</p></div>
-                <div class="row  d-flex justify-content-center">
-                    <div class="col-md-6" style="background-color: #02FEE4; margin: 1em; width: 8em; height: 8em;"><a href="http://linkedin.com/in/harry-zoeftig-1a4395352"><fa-icon [icon]="falinkedIn" /></a></div>
-                    <div class="col-md-6 ml-auto" style="background-color: #3E1340; margin: 1em; width: 8em; height: 8em;"><a href="https://github.com/harryz8"><fa-icon [icon]="faGithub" /></a></div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-6 contact_hover" style="background-color: #02FEE4;"><a href="http://linkedin.com/in/harry-zoeftig-1a4395352"><fa-icon [icon]="falinkedIn" /></a></div>
+                    <div class="col-md-6 contact_hover ml-auto" style="background-color: #3E1340;"><a href="https://github.com/harryz8"><fa-icon [icon]="faGithub" /></a></div>
                 </div>
                 <div class="row  d-flex justify-content-center">
-                    <div class="col-md-6" style="background-color: #F23CA6; margin: 1em; width: 8em; height: 8em;"><a href="mailto:harry.zoeftig@outlook.com"><fa-icon [icon]="faSquareEnvelope" /></a></div>
-                    <div class="col-md-6 ml-auto" style="background-color: #FF9535; margin: 1em; width: 8em; height: 8em;"><a href="tel:+447533863284"><fa-icon [icon]="faSquarePhone" /></a></div>
+                    <div class="col-md-6 contact_hover" style="background-color: #F23CA6;"><a href="mailto:harry.zoeftig@outlook.com"><fa-icon [icon]="faSquareEnvelope" /></a></div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div id="hire-me" class="button-a display-div" (click)="openCV()">Hire Me!</div>
+                <div style="width: 100%;">
+                    <div id="hire-me" class="button-a display-div" [ngClass]="{'hm_1' : hoverFlag}" (click)="openCV()" (mouseenter)="hoverFlag = true" (mouseleave)="hoverFlag = false">Hire Me!</div>
+                </div>
             </div>
         </div>
     </div>

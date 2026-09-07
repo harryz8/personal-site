@@ -81,6 +81,90 @@ fa-icon {
 }
 
 fa-icon {
-    font-size: 5em;
+    // font-size: 5em;
     color: white;
+}
+
+@keyframes move {
+  0% {
+    background-image:   repeating-linear-gradient(45deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%),
+                        linear-gradient(90deg, #0000 0, #01DC03 20%, #01DC03, #01DC03 80%, #0000 100%),
+                        repeating-linear-gradient(135deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%);
+  }
+  10% {
+    background-image:   repeating-linear-gradient(45deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%),
+                        linear-gradient(90deg, #0000 0, #01DC03 16%, #01DC03, #01DC03 84%, #0000 100%),
+                        repeating-linear-gradient(135deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%);
+  }
+  20% {
+    background-image:   repeating-linear-gradient(45deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%),
+                        linear-gradient(90deg, #0000 0, #01DC03 12%, #01DC03, #01DC03 88%, #0000 100%),
+                        repeating-linear-gradient(135deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%);
+  }
+  30% {
+    background-image:   repeating-linear-gradient(45deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%),
+                        linear-gradient(90deg, #0000 0, #01DC03 8%, #01DC03, #01DC03 92%, #0000 100%),
+                        repeating-linear-gradient(135deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%);
+  }
+  40% {
+    background-image:   repeating-linear-gradient(45deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%),
+                        linear-gradient(90deg, #0000 0, #01DC03 4%, #01DC03, #01DC03 96%, #0000 100%),
+                        repeating-linear-gradient(135deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%);
+  }
+  50% {
+    background-image:   linear-gradient(90deg, #01DC03 0, #01DC03, #01DC03 100%);
+  }
+  90% {
+    background-image:   repeating-linear-gradient(45deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%),
+                        linear-gradient(90deg, #0000 0, #01DC03 16%, #01DC03, #01DC03 84%, #0000 100%),
+                        repeating-linear-gradient(135deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%);
+  }
+  80% {
+    background-image:   repeating-linear-gradient(45deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%),
+                        linear-gradient(90deg, #0000 0, #01DC03 12%, #01DC03, #01DC03 88%, #0000 100%),
+                        repeating-linear-gradient(135deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%);
+  }
+  70% {
+    background-image:   repeating-linear-gradient(45deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%),
+                        linear-gradient(90deg, #0000 0, #01DC03 8%, #01DC03, #01DC03 92%, #0000 100%),
+                        repeating-linear-gradient(135deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%);
+  }
+  60% {
+    background-image:   repeating-linear-gradient(45deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%),
+                        linear-gradient(90deg, #0000 0, #01DC03 4%, #01DC03, #01DC03 96%, #0000 100%),
+                        repeating-linear-gradient(135deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%);
+  }
+  100% {
+    background-image:   repeating-linear-gradient(45deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%),
+                        linear-gradient(90deg, #0000 0, #01DC03 20%, #01DC03, #01DC03 80%, #0000 100%),
+                        repeating-linear-gradient(135deg, #0000 0, #0000 0.225%, #01DC03 0.25%, #0000 0.275%, #0000 0.5%);
+  }
+}
+
+.hm_1 {
+    -webkit-animation: move 2s ease-in-out infinite alternate;
+    -moz-animation: move 2s ease-in-out infinite alternate;
+    animation: move 2s ease-in-out infinite alternate;
+}
+
+@keyframes color_change {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+.contact_hover {
+    font-size: 3em;
+    display: inline;
+    margin: 0.1em;
+    padding-bottom: 0.25em;
+    width: 3em;
+    height: 3em;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact_hover :hover {
+    animation: color_change 2s ease-in-out infinite alternate;
 }
