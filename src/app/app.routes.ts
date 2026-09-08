@@ -8,7 +8,7 @@ export const routes: Routes = [
         component: Home,
     },
     {
-        path: 'timeline',
+        path: 'background',
         component: Timeline,
     },
 ];

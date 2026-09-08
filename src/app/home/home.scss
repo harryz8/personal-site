@@ -147,9 +147,9 @@ fa-icon {
     animation: move 2s ease-in-out infinite alternate;
 }
 
-@keyframes color_change {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(360deg);}
+@keyframes shake {
+    from {transform: rotate(-10deg);}
+    to {transform: rotate(10deg);}
 }
 
 .contact_hover {
@@ -166,5 +166,5 @@ fa-icon {
 }
 
 .contact_hover :hover {
-    animation: color_change 2s ease-in-out infinite alternate;
+    animation: shake 1s ease-in-out infinite alternate;
 }

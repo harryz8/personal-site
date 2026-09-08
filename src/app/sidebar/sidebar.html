@@ -1,6 +1,6 @@
 <div id="sidebar" class="container-fluid">
     <div id="sidebar_inner" class="container-fluid center">
-        <div class="row align-middle" style="justify-content: center;">
+        <div class="row align-left" style="justify-content: center;">
             <ul>
                 <li class="li-button" [ngClass]="{'li-button-selected': this.path === '/'}" routerLink="/">
                     <button #bt_1 class="side_button" type="button">
@@ -8,10 +8,16 @@
                         Profile
                     </button>
                 </li>
+                <li class="li-button" [ngClass]="{'li-button-selected': this.path === '/background'}" routerLink="/background">
+                    <button #bt_1 class="side_button" type="button">
+                        @if (this.path === '/background') {*}
+                        Background
+                    </button>
+                </li>
                 <li class="li-button" [ngClass]="{'li-button-selected': this.path === '/timeline'}" routerLink="/timeline">
                     <button #bt_1 class="side_button" type="button">
                         @if (this.path === '/timeline') {*}
-                        Timeline
+                        Notebook
                     </button>
                 </li>
             </ul>

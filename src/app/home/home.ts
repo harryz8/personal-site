@@ -2,13 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSquareLinkedin, faSquareGithub } from '@fortawesome/free-brands-svg-icons';
 import { faSquareEnvelope, faSquarePhone, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
-import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [FontAwesomeModule, NgbCollapse, CommonModule],
+  imports: [FontAwesomeModule, CommonModule],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
