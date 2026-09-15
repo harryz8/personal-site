@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "day": "Monday",
+        "start": "13:00",
+        "end": "14:00",
+        "location": "TLB-LG18",
+        "type": "Lecture",
+        "title": "Masters Project"
+    },
+    {
+        "id": 2,
+        "day": "Tuesday",
+        "start": "16:00",
+        "end": "17:00",
+        "location": "Haworth 101",
+        "type": "Lecture",
+        "title": "Machine Learning"
+    },
+    {
+        "id": 3,
+        "day": "Wednesday",
+        "start": "10:00",
+        "end": "11:00",
+        "location": "TLB-102",
+        "type": "Lecture",
+        "title": "Security of Real World Systems"
+    },
+    {
+        "id": 4,
+        "day": "Thursday",
+        "start": "14:00",
+        "end": "16:00",
+        "location": "Gisbert Kapp LT1",
+        "type": "Lecture",
+        "title": "Security of Real World Systems"
+    },
+    {
+        "id": 5,
+        "day": "Friday",
+        "start": "10:00",
+        "end": "11:00",
+        "location": "Haworth 101",
+        "type": "Lecture",
+        "title": "Machine Learning"
+    },
+    {
+        "id": 6,
+        "day": "Friday",
+        "start": "12:00",
+        "end": "13:00",
+        "location": "Haworth 101",
+        "type": "Tutorial",
+        "title": "Machine Learning"
+    }
+]

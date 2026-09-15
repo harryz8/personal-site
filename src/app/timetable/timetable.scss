@@ -1,0 +1,24 @@
+#timetable_display {
+    height: 70dvh;
+    overflow-y: scroll;
+}
+
+#times > div {
+    border-bottom: solid black 1px;
+}
+
+#times > div:last-child {
+    border-bottom: solid black 0;
+}
+
+.event {
+    border: solid black 0.3dvh;
+    border-radius: 5px;
+    overflow: scroll;
+    position: absolute;
+}
+
+#event_container {
+    position: relative;
+    width: inherit;
+}
