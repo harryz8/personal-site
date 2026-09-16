@@ -1,24 +1,53 @@
 #timetable_display {
-    height: 70dvh;
+    // height: 70dvh;
+    overflow-y: scroll;
+    border-bottom-width: 1em;
+    border-style: solid;
+    border-image: linear-gradient(to bottom, grey 99.5%, white 100%) 0 0 1 0;
+}
+
+#days_of_week {
+    border-bottom-width: 1em;
+    border-style: solid;
+    border-color: #00000000;
     overflow-y: scroll;
 }
 
-#times > div {
+#days_of_week > div {
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.times > div {
     border-bottom: solid black 1px;
 }
 
-#times > div:last-child {
+.times > div:last-child {
     border-bottom: solid black 0;
 }
 
 .event {
-    border: solid black 0.3dvh;
-    border-radius: 5px;
+    border: solid black;
+    border-width: 1px 0 1px 0;
     overflow: scroll;
     position: absolute;
+    padding: 0 1em 0 1em;
+    font-size: small;
 }
 
 #event_container {
     position: relative;
     width: inherit;
+}
+
+.times {
+    margin-right: 1.5dvh;
+    min-width: fit-content;
+}
+
+.time_line {
+    border: solid blue 1px;
+    position: absolute;
 }

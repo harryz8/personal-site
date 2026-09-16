@@ -1,39 +1,71 @@
 <div class="container">
     <div class="container-flex" id="timetable">
-        <div class="row">
+        <div class="row d-lg-none">
             @for (weekday of days_of_the_week; track $index) {
                 <div class="btn btn-primary col-md tt_btn" (click)="day = weekday">{{ weekday }}</div>
             }
         </div>
-        <div class="row display-div">
-            <h3 id="day_title">{{ day }}</h3>
+        <div class="row" id="days_of_week">
+            <div class="col-1 times display-div" style="color: #00000000; border-color: #00000000 !important">00:00</div>
+            <div class="col h3 display-div d-lg-none">
+                {{ day }}
+            </div>
+            @for (each_day of days_of_the_week; track $index) {
+                <div class="col display-div d-none d-lg-block h3" style="padding: 0; max-width: inherit;">
+                    {{ each_day }}
+                </div>
+            }
         </div>
-        <div id="timetable_display" class="row">
-            <div id="times" class="col-2 display-div">
+        <div #td id="timetable_display" class="row" (scroll)="onTDScroll(td)">
+            <div id="times_proper" class="col-1 display-div times">
                 @for (hour of hours; track $index) {
                     <div class="row time_holder">
                         {{ hour }}
                     </div>
                 }
-            </div>
-            <div id="event_container" class="col display-div" style="padding: 0">
-                @if (timetable_events$) {
-                    @if (timetable_events$ | async; as timetable_events) {
+            </div>            
+            @if (timetable_events$) {
+                @if (timetable_events$ | async; as timetable_events) {
+                    <div id="event_container" class="col display-div d-lg-none" style="padding: 0">
+                        <div class="time_line" [style]="{top: `${get_time()}px`}"></div>
                         @for (event of timetable_events; track event) {
-                            @if (event.day.toLowerCase() == this.day.toLowerCase()) {
+                            @if (day_in_daylist(event, this.day)) {
                                 <div class="event container" [style]="{
                                     height: `${timeToPx(event.end) - timeToPx(event.start)}px !important`,
-                                    top: `${timeToPx(event.start) - (start_hour*60*minute_in_px)}px`
-                                }">
+                                    top: `${timeToPx(event.start)}px`,
+                                    backgroundColor: this.get_color(event)
+                                    }">
                                     <div class="row">{{ event.title }}</div>
                                     <div class="row">{{ event.type }}</div>
-                                    <div class="row">{{ event.location }}</div>
+                                    @if (event.location) {
+                                        <div class="row">{{ event.location }}</div>
+                                    }
                                 </div>
                             }
                         }
+                    </div>
+                    @for (each_day of days_of_the_week; track $index) {
+                        <div id="event_container" class="col display-div d-none d-lg-block" style="padding: 0;">
+                            <div class="time_line container" [style]="{top: `${get_time()}px`}"></div>
+                            @for (event of timetable_events; track event) {
+                                @if (day_in_daylist(event, each_day)) {
+                                    <div class="event container" [style]="{
+                                        height: `${timeToPx(event.end) - timeToPx(event.start)}px !important`,
+                                        top: `${timeToPx(event.start)}px`,
+                                        backgroundColor: this.get_color(event)
+                                        }">
+                                        <div class="row">{{ event.title }}</div>
+                                        <div class="row">{{ event.type }}</div>
+                                        @if (event.location) {
+                                            <div class="row">{{ event.location }}</div>
+                                        }
+                                    </div>
+                                }
+                            }
+                        </div>
                     }
                 }
-            </div>
+            }
         </div>
     </div>
 </div>
