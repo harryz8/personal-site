@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs';
+import { interval, map, Observable } from 'rxjs';
 import { Dictionary } from '../dictionary';
 
 interface TimetableEvent {
@@ -43,6 +43,7 @@ export class Timetable implements AfterViewInit, OnInit {
   };
   title_dict: Dictionary<string> = {};
   colour_swapper = 0;
+  px_time$ = interval(1000).pipe(map(() => this.timeToPx(`${(new Date()).getHours()}:${((new Date())).getMinutes()}`)));
 
   constructor(private http: HttpClient) {}
 
@@ -102,14 +103,5 @@ export class Timetable implements AfterViewInit, OnInit {
     else {
       td.style.borderBottomWidth = "1em";
     }
-  }
-
-  get_time(): number {
-    const now: Date = new Date();
-    const px_time = this.timeToPx(`${now.getHours()}:${now.getMinutes()}`);
-    if (px_time < 0) {
-      return 0;
-    }
-    return px_time;
   }
 }

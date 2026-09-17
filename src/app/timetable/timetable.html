@@ -26,29 +26,11 @@
             </div>            
             @if (timetable_events$) {
                 @if (timetable_events$ | async; as timetable_events) {
-                    <div id="event_container" class="col display-div d-lg-none" style="padding: 0">
-                        <div class="time_line" [style]="{top: `${get_time()}px`}"></div>
-                        @for (event of timetable_events; track event) {
-                            @if (day_in_daylist(event, this.day)) {
-                                <div class="event container" [style]="{
-                                    height: `${timeToPx(event.end) - timeToPx(event.start)}px !important`,
-                                    top: `${timeToPx(event.start)}px`,
-                                    backgroundColor: this.get_color(event)
-                                    }">
-                                    <div class="row">{{ event.title }}</div>
-                                    <div class="row">{{ event.type }}</div>
-                                    @if (event.location) {
-                                        <div class="row">{{ event.location }}</div>
-                                    }
-                                </div>
-                            }
-                        }
-                    </div>
-                    @for (each_day of days_of_the_week; track $index) {
-                        <div id="event_container" class="col display-div d-none d-lg-block" style="padding: 0;">
-                            <div class="time_line container" [style]="{top: `${get_time()}px`}"></div>
+                    @if (px_time$ | async; as px_time) {
+                        <div id="event_container" class="col display-div d-lg-none" style="padding: 0">
+                            <div class="time_line" [style]="{top: `${px_time}px`}"></div>
                             @for (event of timetable_events; track event) {
-                                @if (day_in_daylist(event, each_day)) {
+                                @if (day_in_daylist(event, this.day)) {
                                     <div class="event container" [style]="{
                                         height: `${timeToPx(event.end) - timeToPx(event.start)}px !important`,
                                         top: `${timeToPx(event.start)}px`,
@@ -63,6 +45,26 @@
                                 }
                             }
                         </div>
+                        @for (each_day of days_of_the_week; track $index) {
+                            <div id="event_container" class="col display-div d-none d-lg-block" style="padding: 0;">
+                                <div class="time_line container" [style]="{top: `${px_time}px`}"></div>
+                                @for (event of timetable_events; track event) {
+                                    @if (day_in_daylist(event, each_day)) {
+                                        <div class="event container" [style]="{
+                                            height: `${timeToPx(event.end) - timeToPx(event.start)}px !important`,
+                                            top: `${timeToPx(event.start)}px`,
+                                            backgroundColor: this.get_color(event)
+                                            }">
+                                            <div class="row">{{ event.title }}</div>
+                                            <div class="row">{{ event.type }}</div>
+                                            @if (event.location) {
+                                                <div class="row">{{ event.location }}</div>
+                                            }
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        }
                     }
                 }
             }
