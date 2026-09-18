@@ -26,3 +26,11 @@ h1 {
     border: solid black 0.3dvh;
     border-radius: 5px;
 }
+
+@media print {
+    .no_print {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
+}

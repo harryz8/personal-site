@@ -1,6 +1,6 @@
 <div class="container">
     <div class="container-flex" id="timetable">
-        <div class="row d-lg-none">
+        <div class="row d-lg-none no_print">
             @for (weekday of days_of_the_week; track $index) {
                 <div class="btn btn-primary col-md tt_btn" (click)="day = weekday">{{ weekday }}</div>
             }
@@ -28,7 +28,7 @@
                 @if (timetable_events$ | async; as timetable_events) {
                     @if (px_time$ | async; as px_time) {
                         <div id="event_container" class="col display-div d-lg-none" style="padding: 0">
-                            <div class="time_line" [style]="{top: `${px_time}px`}"></div>
+                            <div class="no_print time_line container" [style]="{top: `${px_time}px`}"></div>
                             @for (event of timetable_events; track event) {
                                 @if (day_in_daylist(event, this.day)) {
                                     <div class="event container" [style]="{
@@ -47,7 +47,7 @@
                         </div>
                         @for (each_day of days_of_the_week; track $index) {
                             <div id="event_container" class="col display-div d-none d-lg-block" style="padding: 0;">
-                                <div class="time_line container" [style]="{top: `${px_time}px`}"></div>
+                                <div class="no_print time_line container" [style]="{top: `${px_time}px`}"></div>
                                 @for (event of timetable_events; track event) {
                                     @if (day_in_daylist(event, each_day)) {
                                         <div class="event container" [style]="{
@@ -70,4 +70,5 @@
             }
         </div>
     </div>
+    <div class="no_print" (click)="printPage()">Print</div>
 </div>

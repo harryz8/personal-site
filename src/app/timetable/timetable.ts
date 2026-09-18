@@ -104,4 +104,8 @@ export class Timetable implements AfterViewInit, OnInit {
       td.style.borderBottomWidth = "1em";
     }
   }
+
+  printPage() {
+    window.print()
+  }
 }

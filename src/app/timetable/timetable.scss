@@ -33,7 +33,7 @@
     border-width: 1px 0 1px 0;
     overflow: scroll;
     position: absolute;
-    padding: 0 1em 0 1em;
+    padding: 0 1rem 0 1rem;
     font-size: small;
 }
 
@@ -50,4 +50,22 @@
 .time_line {
     border: solid blue 1px;
     position: absolute;
+}
+
+@media print {
+    #timetable_display {
+        height: fit-content;
+    }
+    
+    #timetable > .row {
+        margin: 0;
+    }
+
+    #timetable {
+        font-size: 0.5rem;
+    }
+
+    .event {
+        font-size: 0.5rem;
+    }
 }
