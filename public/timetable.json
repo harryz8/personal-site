@@ -68,5 +68,228 @@
         "end": "13:00",
         "type": "Food",
         "title": "Lunch"
+    },
+    {
+        "id": 12,
+        "day": ["Thursday", "Friday"],
+        "start": "19:00",
+        "end": "20:00",
+        "type": "Food",
+        "title": "Dinner"
+    },
+    {
+        "id": 13,
+        "day": ["Monday", "Wednesday"],
+        "start": "18:00",
+        "end": "19:00",
+        "type": "Food",
+        "title": "Dinner"
+    },
+    {
+        "id": 14,
+        "day": ["Tuesday"],
+        "start": "17:00",
+        "end": "18:00",
+        "type": "Food",
+        "title": "Dinner"
+    },
+    {
+        "id": 9,
+        "day": ["Monday"],
+        "start": "20:00",
+        "end": "22:00",
+        "location": "Elgar Concert Hall",
+        "type": "Rehearsal",
+        "title": "Windband"
+    },
+    {
+        "id": 10,
+        "day": ["Tuesday"],
+        "start": "19:00",
+        "end": "21:30",
+        "location": "Elgar Concert Hall",
+        "type": "Rehearsal",
+        "title": "Chorus"
+    },
+    {
+        "id": 11,
+        "day": ["Wednesday"],
+        "start": "19:30",
+        "end": "21:30",
+        "location": "The Dome",
+        "type": "Rehearsal",
+        "title": "Brass Band"
+    },
+    {
+        "id": 15,
+        "day": ["Wednesday"],
+        "start": "08:12",
+        "end": "09:00",
+        "location": "Lichfield City -> University",
+        "type": "Travel",
+        "title": "Train"
+    },
+    {
+        "id": 16,
+        "day": ["Monday", "Tuesday"],
+        "start": "10:12",
+        "end": "11:00",
+        "location": "Lichfield City -> University",
+        "type": "Travel",
+        "title": "Train"
+    },
+    {
+        "id": 17,
+        "day": ["Thursday"],
+        "start": "09:52",
+        "end": "10:42",
+        "location": "Rugeley Town -> New Street",
+        "type": "Travel",
+        "title": "Train"
+    },
+    {
+        "id": 18,
+        "day": ["Thursday"],
+        "start": "10:50",
+        "end": "10:55",
+        "location": "New Street -> University",
+        "type": "Travel",
+        "title": "Train"
+    },
+    {
+        "id": 19,
+        "day": ["Friday"],
+        "start": "07:52",
+        "end": "08:42",
+        "location": "Rugeley Town -> New Street",
+        "type": "Travel",
+        "title": "Train"
+    },
+    {
+        "id": 20,
+        "day": ["Friday"],
+        "start": "08:50",
+        "end": "08:55",
+        "location": "New Street -> University",
+        "type": "Travel",
+        "title": "Train"
+    },
+    {
+        "id": 21,
+        "day": ["Friday"],
+        "start": "07:20",
+        "end": "07:31",
+        "type": "Travel",
+        "title": "Drive to Rugeley Town"
+    },
+    {
+        "id": 22,
+        "day": ["Thursday"],
+        "start": "09:20",
+        "end": "09:31",
+        "type": "Travel",
+        "title": "Drive to Rugeley Town"
+    },
+    {
+        "id": 23,
+        "day": ["Monday", "Tuesday"],
+        "start": "09:00",
+        "end": "09:25",
+        "type": "Travel",
+        "title": "Drive to Lichfield City"
+    },
+    {
+        "id": 24,
+        "day": ["Wednesday"],
+        "start": "07:00",
+        "end": "07:25",
+        "type": "Travel",
+        "title": "Drive to Lichfield City"
+    },
+    {
+        "id": 25,
+        "day": ["Tuesday", "Wednesday"],
+        "start": "22:46",
+        "end": "23:11",
+        "type": "Travel",
+        "title": "Drive home"
+    },
+    {
+        "id": 26,
+        "day": ["Tuesday", "Wednesday"],
+        "start": "21:56",
+        "end": "22:46",
+        "location": "University -> Lichfield City",
+        "type": "Travel",
+        "title": "Train"
+    },
+    {
+        "id": 27,
+        "day": ["Monday"],
+        "start": "23:16",
+        "end": "23:41",
+        "type": "Travel",
+        "title": "Drive home"
+    },
+    {
+        "id": 28,
+        "day": ["Monday"],
+        "start": "22:26",
+        "end": "23:16",
+        "location": "University -> Lichfield City",
+        "type": "Travel",
+        "title": "Train"
+    },
+    {
+        "id": 29,
+        "day": ["Thursday"],
+        "start": "16:45",
+        "end": "17:34",
+        "location": "New Street -> Rugeley Town",
+        "type": "Travel",
+        "title": "Train"
+    },
+    {
+        "id": 30,
+        "day": ["Thursday"],
+        "start": "16:26",
+        "end": "16:34",
+        "location": "University -> New Street",
+        "type": "Travel",
+        "title": "Train"
+    },
+    {
+        "id": 31,
+        "day": ["Friday"],
+        "start": "16:15",
+        "end": "17:06",
+        "location": "New Street -> Rugeley Town",
+        "type": "Travel",
+        "title": "Train"
+    },
+    {
+        "id": 32,
+        "day": ["Friday"],
+        "start": "15:56",
+        "end": "16:03",
+        "location": "University -> New Street",
+        "type": "Travel",
+        "title": "Train"
+    },
+    {
+        "id": 33,
+        "day": ["Thursday"],
+        "start": "17:34",
+        "end": "17:45",
+        "type": "Travel",
+        "title": "Drive Home"
+    },
+    {
+        "id": 34,
+        "day": ["Friday"],
+        "start": "17:06",
+        "end": "17:17",
+        "type": "Travel",
+        "title": "Drive Home"
     }
 ]

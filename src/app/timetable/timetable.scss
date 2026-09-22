@@ -31,10 +31,8 @@
 .event {
     border: solid black;
     border-width: 1px 0 1px 0;
-    overflow: scroll;
     position: absolute;
     padding: 0 1rem 0 1rem;
-    font-size: small;
 }
 
 #event_container {
@@ -53,8 +51,17 @@
 }
 
 @media print {
+    * {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
     #timetable_display {
         height: fit-content;
+        width: 100dvw;
+    }
+
+    #days_of_week {
+        width: 100dvw;
     }
     
     #timetable > .row {
@@ -62,10 +69,17 @@
     }
 
     #timetable {
-        font-size: 0.5rem;
+        page-break-inside: avoid;
     }
 
-    .event {
-        font-size: 0.5rem;
+    .h3 {
+        font-size: 0.7rem !important;
     }
 }
+
+// @page {
+//     #timetable {
+//         size: A4 portrait;
+//         margin: 20mm;
+//     }
+// }

@@ -1,17 +1,17 @@
 <div class="container">
-    <div class="container-flex" id="timetable">
-        <div class="row d-lg-none no_print">
+    <div class="container-flex d-print-inline" id="timetable">
+        <div class="row d-lg-none d-print-none">
             @for (weekday of days_of_the_week; track $index) {
                 <div class="btn btn-primary col-md tt_btn" (click)="day = weekday">{{ weekday }}</div>
             }
         </div>
         <div class="row" id="days_of_week">
             <div class="col-1 times display-div" style="color: #00000000; border-color: #00000000 !important">00:00</div>
-            <div class="col h3 display-div d-lg-none">
+            <div class="col h3 display-div d-lg-none d-print-none">
                 {{ day }}
             </div>
             @for (each_day of days_of_the_week; track $index) {
-                <div class="col display-div d-none d-lg-block h3" style="padding: 0; max-width: inherit;">
+                <div class="col display-div d-print-block d-none d-lg-block h3" style="padding: 0; max-width: inherit;">
                     {{ each_day }}
                 </div>
             }
@@ -19,23 +19,24 @@
         <div #td id="timetable_display" class="row" (scroll)="onTDScroll(td)">
             <div id="times_proper" class="col-1 display-div times">
                 @for (hour of hours; track $index) {
-                    <div class="row time_holder">
+                    <div class="row time_holder" [style.height.px]="this.minute_in_px*60" [style.fontSize.rem]="font_size_rem">
                         {{ hour }}
                     </div>
                 }
-            </div>            
+            </div>
             @if (timetable_events$) {
                 @if (timetable_events$ | async; as timetable_events) {
                     @if (px_time$ | async; as px_time) {
-                        <div id="event_container" class="col display-div d-lg-none" style="padding: 0">
-                            <div class="no_print time_line container" [style]="{top: `${px_time}px`}"></div>
+                        <div id="event_container" class="col display-div d-lg-none d-print-none" style="padding: 0">
+                            <div class="time_line container" [style.top.px]="px_time"></div>
                             @for (event of timetable_events; track event) {
                                 @if (day_in_daylist(event, this.day)) {
-                                    <div class="event container" [style]="{
-                                        height: `${timeToPx(event.end) - timeToPx(event.start)}px !important`,
-                                        top: `${timeToPx(event.start)}px`,
-                                        backgroundColor: this.get_color(event)
-                                        }">
+                                    <div class="event container overflow-scroll" 
+                                        [style.height.px]="timeToPx(event.end) - timeToPx(event.start)"
+                                        [style.top.px]="timeToPx(event.start)"
+                                        [style.backgroundColor]="this.get_color(event)"
+                                        [style.fontSize.rem]="1"
+                                        >
                                         <div class="row">{{ event.title }}</div>
                                         <div class="row">{{ event.type }}</div>
                                         @if (event.location) {
@@ -46,21 +47,47 @@
                             }
                         </div>
                         @for (each_day of days_of_the_week; track $index) {
-                            <div id="event_container" class="col display-div d-none d-lg-block" style="padding: 0;">
-                                <div class="no_print time_line container" [style]="{top: `${px_time}px`}"></div>
+                            <div id="event_container" class="col display-div d-none d-lg-block d-print-block" style="padding: 0;">
+                                <div class="d-print-none time_line container" [style.top.px]="px_time"></div>
                                 @for (event of timetable_events; track event) {
                                     @if (day_in_daylist(event, each_day)) {
-                                        <div class="event container" [style]="{
-                                            height: `${timeToPx(event.end) - timeToPx(event.start)}px !important`,
-                                            top: `${timeToPx(event.start)}px`,
-                                            backgroundColor: this.get_color(event)
-                                            }">
-                                            <div class="row">{{ event.title }}</div>
-                                            <div class="row">{{ event.type }}</div>
-                                            @if (event.location) {
-                                                <div class="row">{{ event.location }}</div>
-                                            }
-                                        </div>
+                                        @if ((timeToPx(event.end) - timeToPx(event.start)) >= line_height) {
+                                            <div class="event container overflow-scroll" 
+                                                [style.height.px]="timeToPx(event.end) - timeToPx(event.start)"
+                                                [style.top.px]="timeToPx(event.start)"
+                                                [style.backgroundColor]="this.get_color(event)"
+                                                [style.fontSize.rem]="font_size_rem"
+                                                >
+                                                <div class="row">{{ event.title }}</div>
+                                                @if (event.type.toLowerCase() !== "travel") {
+                                                    <div class="row">{{ event.type }}</div>
+                                                }
+                                                @if (event.location) {
+                                                    <div class="row">{{ event.location }}</div>
+                                                }
+                                                @if (event.type.toLowerCase() === "travel") {
+                                                    <div class="row">{{ event.start }} - {{ event.end }}</div>
+                                                }
+                                            </div>
+                                        } @else {
+                                            <div class="event container overflow-visible" 
+                                                [style.height.px]="timeToPx(event.end) - timeToPx(event.start)"
+                                                [style.top.px]="timeToPx(event.start)"
+                                                [style.backgroundColor]="this.get_color(event)"
+                                                [style.fontSize.rem]="(3/4) * font_size_rem"
+                                                >
+                                                {{ event.title }} 
+                                                @if (event.type.toLowerCase() !== "travel") {
+                                                    {{ event.type }} 
+                                                }
+                                                @if (event.location) {
+                                                    {{ event.location }} 
+                                                }
+                                                @if (event.type.toLowerCase() === "travel") {
+                                                    {{ event.start }} - {{ event.end }}
+                                                }
+                                            </div>
+                                        }
                                     }
                                 }
                             </div>
@@ -70,5 +97,5 @@
             }
         </div>
     </div>
-    <div class="no_print" (click)="printPage()">Print</div>
+    <div class="d-print-none btn btn-success" (click)="printPage()">Print</div>
 </div>

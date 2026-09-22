@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { interval, map, Observable } from 'rxjs';
 import { Dictionary } from '../dictionary';
@@ -20,7 +20,7 @@ interface TimetableEvent {
   templateUrl: './timetable.html',
   styleUrl: './timetable.scss',
 })
-export class Timetable implements AfterViewInit, OnInit {
+export class Timetable implements OnInit {
   days_of_the_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
   day = "Monday";
   start_hour = 6;
@@ -38,14 +38,17 @@ export class Timetable implements AfterViewInit, OnInit {
   ];
   type_dict: Dictionary<string> = {
     "travel": '#FFE9BF',
-    "extracurricular": '#FCF5BD',
+    "rehearsal": '#FCF5BD',
     "food": '#79B1B1'
   };
   title_dict: Dictionary<string> = {};
   colour_swapper = 0;
   px_time$ = interval(1000).pipe(map(() => this.timeToPx(`${(new Date()).getHours()}:${((new Date())).getMinutes()}`)));
+  printing = false;
+  line_height = 1;
+  font_size_rem = 0.8;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cd: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.timetable_events$ = this.http.get<TimetableEvent[]>("/timetable.json");
@@ -58,15 +61,18 @@ export class Timetable implements AfterViewInit, OnInit {
       currentDay = 1;
     }
     this.day = this.days_of_the_week[currentDay-1];
-  }
-
-  ngAfterViewInit(): void {
-    let times = document.getElementById("times_proper") as HTMLDivElement;
-    if (times){
-      for (let div_elem of times.children) {
-        (div_elem as HTMLDivElement).style["height"] = `${this.minute_in_px*60}px`;
-      }
-    }
+    window.addEventListener("beforeprint", () => {
+      this.minute_in_px /= 2;
+      this.font_size_rem = 0.4;
+      this.cd.detectChanges();
+    });
+    window.addEventListener("afterprint", () => {
+      this.minute_in_px *= 2;
+      this.font_size_rem = 0.8;
+      this.cd.detectChanges();
+    });
+    let timetable_display = document.getElementById("timetable_display") as HTMLDivElement;
+    this.line_height = parseFloat(getComputedStyle(timetable_display).lineHeight);
   }
 
   timeToPx(time: string): number {
@@ -106,6 +112,6 @@ export class Timetable implements AfterViewInit, OnInit {
   }
 
   printPage() {
-    window.print()
+    window.print();
   }
 }
