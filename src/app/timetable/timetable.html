@@ -30,8 +30,8 @@
                         <div id="event_container" class="col display-div d-lg-none d-print-none" style="padding: 0">
                             <div class="time_line container" [style.top.px]="px_time"></div>
                             @for (event of timetable_events; track event) {
-                                @if (day_in_daylist(event, this.day)) {
-                                    <div class="event container overflow-scroll" 
+                                @if (day_in_daylist(event, this.day) && !(event.disabled && event.disabled === true)) {
+                                    <div class="event container overflow-y-auto" 
                                         [style.height.px]="timeToPx(event.end) - timeToPx(event.start)"
                                         [style.top.px]="timeToPx(event.start)"
                                         [style.backgroundColor]="this.get_color(event)"
@@ -50,9 +50,9 @@
                             <div id="event_container" class="col display-div d-none d-lg-block d-print-block" style="padding: 0;">
                                 <div class="d-print-none time_line container" [style.top.px]="px_time"></div>
                                 @for (event of timetable_events; track event) {
-                                    @if (day_in_daylist(event, each_day)) {
+                                    @if (day_in_daylist(event, each_day) && !(event.disabled && event.disabled === true)) {
                                         @if ((timeToPx(event.end) - timeToPx(event.start)) >= line_height) {
-                                            <div class="event container overflow-scroll" 
+                                            <div class="event container overflow-y-auto" 
                                                 [style.height.px]="timeToPx(event.end) - timeToPx(event.start)"
                                                 [style.top.px]="timeToPx(event.start)"
                                                 [style.backgroundColor]="this.get_color(event)"

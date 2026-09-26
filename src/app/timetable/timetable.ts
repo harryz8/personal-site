@@ -12,6 +12,7 @@ interface TimetableEvent {
     location?: string;
     type: string;
     title: string;
+    disabled?: boolean;
 }
 
 @Component({
