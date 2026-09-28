@@ -56,7 +56,7 @@
     },
     {
         "id": 7,
-        "day": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+        "day": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         "start": "13:00",
         "end": "14:00",
         "type": "Food",
@@ -73,7 +73,7 @@
     },
     {
         "id": 12,
-        "day": ["Thursday", "Friday"],
+        "day": ["Monday", "Thursday", "Friday"],
         "start": "19:00",
         "end": "20:00",
         "type": "Food",
@@ -212,7 +212,7 @@
     },
     {
         "id": 25,
-        "day": ["Tuesday", "Wednesday"],
+        "day": ["Tuesday"],
         "start": "22:46",
         "end": "23:11",
         "type": "Travel",
@@ -220,7 +220,7 @@
     },
     {
         "id": 26,
-        "day": ["Tuesday", "Wednesday"],
+        "day": ["Tuesday"],
         "start": "21:56",
         "end": "22:46",
         "location": "University -> Lichfield City",
@@ -229,22 +229,22 @@
     },
     {
         "id": 27,
-        "day": ["Monday"],
+        "day": ["Wednesday"],
         "start": "23:16",
         "end": "23:41",
         "type": "Travel",
         "title": "Drive home",
-        "disabled": true
+        "disabled": false
     },
     {
         "id": 28,
-        "day": ["Monday"],
+        "day": ["Wednesday"],
         "start": "22:26",
         "end": "23:16",
         "location": "University -> Lichfield City",
         "type": "Travel",
         "title": "Train",
-        "disabled": true
+        "disabled": false
     },
     {
         "id": 29,
@@ -297,5 +297,14 @@
         "end": "17:17",
         "type": "Travel",
         "title": "Drive Home"
+    },
+    {
+        "id": 35,
+        "day": ["Wednesday"],
+        "start": "20:00",
+        "end": "22:00",
+        "type": "Misc",
+        "location": "Soak",
+        "title": "Brass Band Meet Up"
     }
 ]
