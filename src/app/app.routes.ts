@@ -3,6 +3,7 @@ import { Home } from './home/home';
 import { Timeline } from './timeline/timeline'
 import { Timetable } from './timetable/timetable';
 import { Notebook } from './notebook/notebook';
+import { LoadTimetableJson } from './load-timetable-json/load-timetable-json';
 
 export const routes: Routes = [
     {
@@ -14,8 +15,12 @@ export const routes: Routes = [
         component: Timeline,
     },
     {
-        path: 'timetable',
+        path: 'timetable:c',
         component: Timetable,
+    },
+    {
+        path: 'auth-timetable',
+        component: LoadTimetableJson,
     },
     {
         path: 'notebook',
