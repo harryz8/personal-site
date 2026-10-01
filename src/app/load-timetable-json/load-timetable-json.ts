@@ -37,14 +37,35 @@ export class LoadTimetableJson implements OnInit {
     if (this.timetable_ciphertext) {
       this.timetable_ciphertext.subscribe((data) => {
         const pwd_elem = document.getElementById("password") as HTMLInputElement;
-        if (pwd_elem) {
-          let password = pwd_elem.value;
-          let text_encoder = new TextEncoder();
-          // window.crypto.subtle.importKey("raw", text_encoder.encode(password), {"name": "PBKDF2"}, false, ["deriveKey"]).then(
-            
-          // );
-        }
+        this.deriveKey(data, pwd_elem.value).then(h => {
+          alert("here");
+          let string_key = btoa(String.fromCharCode(...new Uint8Array(h)));
+          string_key = string_key.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+          alert(string_key);
+        });
       });
+    }
+  }
+
+  async deriveKey(params: EncObject, password: string): Promise<ArrayBuffer> {
+    try {
+      // https://stackoverflow.com/questions/40459020/angular-js-cryptography-pbkdf2-and-iteration/40468218#40468218
+      let text_encoder = new TextEncoder();
+      let base_key = await window.crypto.subtle.importKey("raw", text_encoder.encode(password), "PBKDF2", false, ["deriveBits"]);
+      let salt_buffer: ArrayBuffer = new Uint8Array(params.salt.match(/../g)!.map(h=>parseInt(h, 16))).buffer;
+      let bits_key = await window.crypto.subtle.deriveBits(
+        {
+          name: "PBKDF2",
+          salt: new Uint8Array(salt_buffer),
+          iterations: Number(params.iterations),
+          hash: "SHA-256"
+        },
+        base_key, 256
+      );
+      return bits_key;
+    }
+    catch (err) {
+      throw err;
     }
   }
 
