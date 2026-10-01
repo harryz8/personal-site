@@ -4,7 +4,7 @@ import { AsyncPipe } from '@angular/common';
 import { interval, map, Observable } from 'rxjs';
 import { Dictionary } from '../dictionary';
 
-interface TimetableEvent {
+export interface TimetableEvent {
     id: number;
     day: string[];
     start: string;

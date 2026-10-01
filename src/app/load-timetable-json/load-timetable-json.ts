@@ -1,8 +1,18 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { jwtDecode } from 'jwt-decode';
-import * as gws from '@googleworkspace/drive-picker-element';
+import { Observable } from 'rxjs';
+import { TimetableEvent } from '../timetable/timetable';
+import * as sha256 from "fast-sha256";
 
 declare const google: any;
+
+interface EncObject {
+    salt: string;
+    iterations: number;
+    key_algorithm: string;
+    ciphertext: string;
+    ciphertext_algorithm: string;
+}
 
 @Component({
   selector: 'app-load-timetable-json',
@@ -14,34 +24,52 @@ export class LoadTimetableJson implements OnInit {
 
   clientId = "1068245758004-bsug006epkscqefqk1cqij002jbsvm4q.apps.googleusercontent.com"
 
-  constructor() {}
+  timetable_ciphertext: Observable<EncObject> | null = null;
+  timetable_plaintext: TimetableEvent[] | null = null;
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.initGoogleSignIn();
+    this.timetable_ciphertext = this.http.get<EncObject>("/timetable_enc.json");
   }
 
-  initGoogleSignIn(): void {
-    const client = google.accounts.oauth2.initTokenClient({
-      client_id: this.clientId,
-      scope: 'https://www.googleapis.com/auth/drive.readonly',
-      redirect_uri: `${document.location.href}/timetable`,
-      ux_mode: 'redirect'
-    });
-
-    client.requestAccessToken();
-
-    // google.accounts.id.renderButton(
-    //   document.getElementById('google-signin-button'),
-    //   { theme: 'outline', size: 'large' }
-    // );
-
-    // google.accounts.id.prompt();
+  decryptTimetable(): void {
+    if (this.timetable_ciphertext) {
+      this.timetable_ciphertext.subscribe((data) => {
+        const pwd_elem = document.getElementById("password") as HTMLInputElement;
+        if (pwd_elem) {
+          let password = pwd_elem.value;
+          let text_encoder = new TextEncoder();
+          // window.crypto.subtle.importKey("raw", text_encoder.encode(password), {"name": "PBKDF2"}, false, ["deriveKey"]).then(
+            
+          // );
+        }
+      });
+    }
   }
 
-  handleCredentialResponse(response: any) {
-    alert("Callback")
-    const token = response.credential;
-    const decoded: any = jwtDecode(token);
-    alert(decoded);
-  }
+  // initGoogleSignIn(): void {
+  //   const client = google.accounts.oauth2.initTokenClient({
+  //     client_id: this.clientId,
+  //     scope: 'https://www.googleapis.com/auth/drive.readonly',
+  //     redirect_uri: `${document.location.href}/timetable`,
+  //     ux_mode: 'redirect'
+  //   });
+
+  //   client.requestAccessToken();
+
+  //   // google.accounts.id.renderButton(
+  //   //   document.getElementById('google-signin-button'),
+  //   //   { theme: 'outline', size: 'large' }
+  //   // );
+
+  //   // google.accounts.id.prompt();
+  // }
+
+  // handleCredentialResponse(response: any) {
+  //   alert("Callback")
+  //   const token = response.credential;
+  //   const decoded: any = jwtDecode(token);
+  //   alert(decoded);
+  // }
 }
