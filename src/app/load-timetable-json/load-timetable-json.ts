@@ -40,15 +40,18 @@ export class LoadTimetableJson implements OnInit {
         this.deriveKey(data, pwd_elem.value).then(h => {
           let string_key = btoa(String.fromCharCode(...new Uint8Array(h)));
           string_key = string_key.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-          alert(string_key);
           let fernet = new Fernet();
           fernet.setUInt8Key(h);
           try {
             fernet.decrypt(data.ciphertext).then(plaintext => {
-              alert(plaintext)
+              let uint8_plaintext = new Uint8Array(plaintext);
+              let text_decoder = new TextDecoder();
+              let decoded_plaintext = text_decoder.decode(uint8_plaintext);
+              console.info(decoded_plaintext);
             });
           } catch (err) {
-            alert(err)
+            console.info(err)
+            throw err
           }
         });
       });
