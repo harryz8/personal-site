@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TimetableEvent } from '../timetable/timetable';
-import * as sha256 from "fast-sha256";
+import { Secret, Token } from 'fernet/fernetBrowser';
 
 declare const google: any;
 
@@ -42,6 +42,14 @@ export class LoadTimetableJson implements OnInit {
           let string_key = btoa(String.fromCharCode(...new Uint8Array(h)));
           string_key = string_key.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
           alert(string_key);
+          try {
+            let secret = new Secret(string_key);
+            const decryptToken = new Token({ secret: secret, token: data.ciphertext });
+            let plaintext = decryptToken.decode();
+            alert(plaintext);
+          } catch (err) {
+            alert(err)
+          }
         });
       });
     }
