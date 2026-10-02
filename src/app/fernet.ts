@@ -21,7 +21,7 @@ export class Fernet {
     return new Uint8Array(hex_string.match(/../g)!.map(h=>parseInt(h, 16))).buffer;
   }
 
-  async decrypt(cyphertext: string) {
+  async decrypt(cyphertext: string): Promise<ArrayBuffer> {
     if (this.key_ === null) {
       throw "No Key"
     }
@@ -42,8 +42,8 @@ export class Fernet {
       );
       return plaintext;
     } catch (err) {
-      console.info(err);
-      throw err;
+      console.info("fernet error: "+err);
+      return Promise.reject(err);
     }
   }
 }

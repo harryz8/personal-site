@@ -24,74 +24,72 @@
                     </div>
                 }
             </div>
-            @if (timetable_events$) {
-                @if (timetable_events$ | async; as timetable_events) {
-                    @if (px_time$ | async; as px_time) {
-                        <div id="event_container" class="col display-div d-lg-none d-print-none" style="padding: 0">
-                            <div class="time_line container" [style.top.px]="px_time"></div>
+            @if (timetable_events) {
+                @if (px_time$ | async; as px_time) {
+                    <div id="event_container" class="col display-div d-lg-none d-print-none" style="padding: 0">
+                        <div class="time_line container" [style.top.px]="px_time"></div>
+                        @for (event of timetable_events; track event) {
+                            @if (day_in_daylist(event, this.day) && !(event.disabled && event.disabled === true)) {
+                                <div class="event container overflow-y-auto" 
+                                    [style.height.px]="timeToPx(event.end) - timeToPx(event.start)"
+                                    [style.top.px]="timeToPx(event.start)"
+                                    [style.backgroundColor]="this.get_color(event)"
+                                    [style.fontSize.rem]="1"
+                                    >
+                                    <div class="row">{{ event.title }}</div>
+                                    <div class="row">{{ event.type }}</div>
+                                    @if (event.location) {
+                                        <div class="row">{{ event.location }}</div>
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                    @for (each_day of days_of_the_week; track $index) {
+                        <div id="event_container" class="col display-div d-none d-lg-block d-print-block" style="padding: 0;">
+                            <div class="d-print-none time_line container" [style.top.px]="px_time"></div>
                             @for (event of timetable_events; track event) {
-                                @if (day_in_daylist(event, this.day) && !(event.disabled && event.disabled === true)) {
-                                    <div class="event container overflow-y-auto" 
-                                        [style.height.px]="timeToPx(event.end) - timeToPx(event.start)"
-                                        [style.top.px]="timeToPx(event.start)"
-                                        [style.backgroundColor]="this.get_color(event)"
-                                        [style.fontSize.rem]="1"
-                                        >
-                                        <div class="row">{{ event.title }}</div>
-                                        <div class="row">{{ event.type }}</div>
-                                        @if (event.location) {
-                                            <div class="row">{{ event.location }}</div>
-                                        }
-                                    </div>
+                                @if (day_in_daylist(event, each_day) && !(event.disabled && event.disabled === true)) {
+                                    @if ((timeToPx(event.end) - timeToPx(event.start)) >= line_height) {
+                                        <div class="event container overflow-y-auto" 
+                                            [style.height.px]="timeToPx(event.end) - timeToPx(event.start)"
+                                            [style.top.px]="timeToPx(event.start)"
+                                            [style.backgroundColor]="this.get_color(event)"
+                                            [style.fontSize.rem]="font_size_rem"
+                                            >
+                                            <div class="row">{{ event.title }}</div>
+                                            @if (event.type.toLowerCase() !== "travel") {
+                                                <div class="row">{{ event.type }}</div>
+                                            }
+                                            @if (event.location) {
+                                                <div class="row">{{ event.location }}</div>
+                                            }
+                                            @if (event.type.toLowerCase() === "travel") {
+                                                <div class="row">{{ event.start }} - {{ event.end }}</div>
+                                            }
+                                        </div>
+                                    } @else {
+                                        <div class="event container overflow-visible" 
+                                            [style.height.px]="timeToPx(event.end) - timeToPx(event.start)"
+                                            [style.top.px]="timeToPx(event.start)"
+                                            [style.backgroundColor]="this.get_color(event)"
+                                            [style.fontSize.rem]="(3/4) * font_size_rem"
+                                            >
+                                            {{ event.title }} 
+                                            @if (event.type.toLowerCase() !== "travel") {
+                                                {{ event.type }} 
+                                            }
+                                            @if (event.location) {
+                                                {{ event.location }} 
+                                            }
+                                            @if (event.type.toLowerCase() === "travel") {
+                                                {{ event.start }} - {{ event.end }}
+                                            }
+                                        </div>
+                                    }
                                 }
                             }
                         </div>
-                        @for (each_day of days_of_the_week; track $index) {
-                            <div id="event_container" class="col display-div d-none d-lg-block d-print-block" style="padding: 0;">
-                                <div class="d-print-none time_line container" [style.top.px]="px_time"></div>
-                                @for (event of timetable_events; track event) {
-                                    @if (day_in_daylist(event, each_day) && !(event.disabled && event.disabled === true)) {
-                                        @if ((timeToPx(event.end) - timeToPx(event.start)) >= line_height) {
-                                            <div class="event container overflow-y-auto" 
-                                                [style.height.px]="timeToPx(event.end) - timeToPx(event.start)"
-                                                [style.top.px]="timeToPx(event.start)"
-                                                [style.backgroundColor]="this.get_color(event)"
-                                                [style.fontSize.rem]="font_size_rem"
-                                                >
-                                                <div class="row">{{ event.title }}</div>
-                                                @if (event.type.toLowerCase() !== "travel") {
-                                                    <div class="row">{{ event.type }}</div>
-                                                }
-                                                @if (event.location) {
-                                                    <div class="row">{{ event.location }}</div>
-                                                }
-                                                @if (event.type.toLowerCase() === "travel") {
-                                                    <div class="row">{{ event.start }} - {{ event.end }}</div>
-                                                }
-                                            </div>
-                                        } @else {
-                                            <div class="event container overflow-visible" 
-                                                [style.height.px]="timeToPx(event.end) - timeToPx(event.start)"
-                                                [style.top.px]="timeToPx(event.start)"
-                                                [style.backgroundColor]="this.get_color(event)"
-                                                [style.fontSize.rem]="(3/4) * font_size_rem"
-                                                >
-                                                {{ event.title }} 
-                                                @if (event.type.toLowerCase() !== "travel") {
-                                                    {{ event.type }} 
-                                                }
-                                                @if (event.location) {
-                                                    {{ event.location }} 
-                                                }
-                                                @if (event.type.toLowerCase() === "travel") {
-                                                    {{ event.start }} - {{ event.end }}
-                                                }
-                                            </div>
-                                        }
-                                    }
-                                }
-                            </div>
-                        }
                     }
                 }
             }

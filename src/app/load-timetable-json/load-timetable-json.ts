@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TimetableEvent } from '../timetable/timetable';
 import { Fernet } from '../fernet';
+import { Router } from '@angular/router';
 
 declare const google: any;
 
@@ -22,12 +22,9 @@ interface EncObject {
 })
 export class LoadTimetableJson implements OnInit {
 
-  clientId = "1068245758004-bsug006epkscqefqk1cqij002jbsvm4q.apps.googleusercontent.com"
-
   timetable_ciphertext: Observable<EncObject> | null = null;
-  timetable_plaintext: TimetableEvent[] | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.timetable_ciphertext = this.http.get<EncObject>("/timetable_enc.json");
@@ -38,8 +35,6 @@ export class LoadTimetableJson implements OnInit {
       this.timetable_ciphertext.subscribe((data) => {
         const pwd_elem = document.getElementById("password") as HTMLInputElement;
         this.deriveKey(data, pwd_elem.value).then(h => {
-          let string_key = btoa(String.fromCharCode(...new Uint8Array(h)));
-          string_key = string_key.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
           let fernet = new Fernet();
           fernet.setUInt8Key(h);
           try {
@@ -48,10 +43,13 @@ export class LoadTimetableJson implements OnInit {
               let text_decoder = new TextDecoder();
               let decoded_plaintext = text_decoder.decode(uint8_plaintext);
               console.info(decoded_plaintext);
+              this.router.navigate(['/timetable', decoded_plaintext]);
+            }).catch(err => {
+              alert("Decryption failed. Check your password.");
             });
           } catch (err) {
-            console.info(err)
-            throw err
+            console.info(err);
+            throw err;
           }
         });
       });

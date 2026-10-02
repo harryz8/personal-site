@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { interval, map, Observable } from 'rxjs';
+import { interval, map } from 'rxjs';
 import { Dictionary } from '../dictionary';
+import { ActivatedRoute } from '@angular/router';
 
 export interface TimetableEvent {
     id: number;
@@ -27,7 +28,7 @@ export class Timetable implements OnInit {
   start_hour = 6;
   hours: string[] = [];
   minute_in_px = 1.25;
-  timetable_events$: Observable<TimetableEvent[]> | null = null;
+  timetable_events: TimetableEvent[] | null = null;
   colours = [
     '#BFFFC7',
     '#FFBFBF',
@@ -49,10 +50,13 @@ export class Timetable implements OnInit {
   line_height = 1;
   font_size_rem = 0.8;
 
-  constructor(private http: HttpClient, private cd: ChangeDetectorRef) {}
+  constructor(private http: HttpClient, private cd: ChangeDetectorRef, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.timetable_events$ = this.http.get<TimetableEvent[]>("/timetable.json");
+    this.route.params.subscribe(params => {
+      let decoded_plaintext = params['events'];
+      this.timetable_events = JSON.parse(decoded_plaintext) as TimetableEvent[];
+    });
     for (let i=this.start_hour; i<24; i++) {
       this.hours.push(`${i}:00`);
     }
