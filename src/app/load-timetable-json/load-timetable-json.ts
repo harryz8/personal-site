@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TimetableEvent } from '../timetable/timetable';
-import { Secret, Token } from 'fernet/fernetBrowser';
+import { Fernet } from '../fernet';
 
 declare const google: any;
 
@@ -38,15 +38,15 @@ export class LoadTimetableJson implements OnInit {
       this.timetable_ciphertext.subscribe((data) => {
         const pwd_elem = document.getElementById("password") as HTMLInputElement;
         this.deriveKey(data, pwd_elem.value).then(h => {
-          alert("here");
           let string_key = btoa(String.fromCharCode(...new Uint8Array(h)));
           string_key = string_key.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
           alert(string_key);
+          let fernet = new Fernet();
+          fernet.setUInt8Key(h);
           try {
-            let secret = new Secret(string_key);
-            const decryptToken = new Token({ secret: secret, token: data.ciphertext });
-            let plaintext = decryptToken.decode();
-            alert(plaintext);
+            fernet.decrypt(data.ciphertext).then(plaintext => {
+              alert(plaintext)
+            });
           } catch (err) {
             alert(err)
           }
