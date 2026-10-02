@@ -1,33 +1,33 @@
-<div class="container">
-    <div class="container-flex d-print-inline" id="timetable">
-        <div class="row d-lg-none d-print-none">
-            @for (weekday of days_of_the_week; track $index) {
-                <div class="btn btn-primary col-md tt_btn" (click)="day = weekday">{{ weekday }}</div>
-            }
-        </div>
-        <div class="row" id="days_of_week">
-            <div class="col-1 times display-div" style="color: #00000000; border-color: #00000000 !important">00:00</div>
-            <div class="col h3 display-div d-lg-none d-print-none">
-                {{ day }}
+@if (timetable_events) {
+    <div class="container">
+        <div class="container-flex d-print-inline" id="timetable">
+            <div class="row d-lg-none d-print-none">
+                @for (weekday of days_of_the_week; track $index) {
+                    <div class="btn btn-primary col-md tt_btn" (click)="day = weekday">{{ weekday }}</div>
+                }
             </div>
-            @for (each_day of days_of_the_week; track $index) {
-                <div class="col display-div d-print-block d-none d-lg-block h3" style="padding: 0; max-width: inherit;">
-                    {{ each_day }}
+            <div class="row" id="days_of_week">
+                <div class="col-1 times display-div" style="color: #00000000; border-color: #00000000 !important">00:00</div>
+                <div class="col h3 display-div d-lg-none d-print-none">
+                    {{ day }}
                 </div>
-            }
-        </div>
-        <div #td id="timetable_display" class="row" (scroll)="onTDScroll(td)">
-            <div id="times_proper" class="col-1 display-div times">
-                @for (hour of hours; track $index) {
-                    <div class="row time_holder" [style.height.px]="this.minute_in_px*60" [style.fontSize.rem]="font_size_rem">
-                        {{ hour }}
+                @for (each_day of days_of_the_week; track $index) {
+                    <div class="col display-div d-print-block d-none d-lg-block h3" style="padding: 0; max-width: inherit;">
+                        {{ each_day }}
                     </div>
                 }
             </div>
-            @if (timetable_events) {
+            <div #td id="timetable_display" class="row" (scroll)="onTDScroll(td)">
+                <div id="times_proper" class="col-1 display-div times">
+                    @for (hour of hours; track $index) {
+                        <div class="row time_holder" [style.height.px]="this.minute_in_px*60" [style.fontSize.rem]="font_size_rem">
+                            {{ hour }}
+                        </div>
+                    }
+                </div>
                 @if (px_time$ | async; as px_time) {
                     <div id="event_container" class="col display-div d-lg-none d-print-none" style="padding: 0">
-                        <div class="time_line container" [style.top.px]="px_time"></div>
+                        <div class="time_line container" [style.top.px]="px_time" style="z-index: 2;"></div>
                         @for (event of timetable_events; track event) {
                             @if (day_in_daylist(event, this.day) && !(event.disabled && event.disabled === true)) {
                                 <div class="event container overflow-y-auto" 
@@ -47,7 +47,7 @@
                     </div>
                     @for (each_day of days_of_the_week; track $index) {
                         <div id="event_container" class="col display-div d-none d-lg-block d-print-block" style="padding: 0;">
-                            <div class="d-print-none time_line container" [style.top.px]="px_time"></div>
+                            <div class="d-print-none time_line container" [style.top.px]="px_time" style="z-index: 2;"></div>
                             @for (event of timetable_events; track event) {
                                 @if (day_in_daylist(event, each_day) && !(event.disabled && event.disabled === true)) {
                                     @if ((timeToPx(event.end) - timeToPx(event.start)) >= line_height) {
@@ -92,8 +92,10 @@
                         </div>
                     }
                 }
-            }
+            </div>
         </div>
+        <div class="d-print-none btn btn-success" (click)="printPage()">Print</div>
     </div>
-    <div class="d-print-none btn btn-success" (click)="printPage()">Print</div>
-</div>
+} @else {
+    <app-load-timetable-json (timetable_plaintext)="receiveEvents($event)"></app-load-timetable-json>
+}

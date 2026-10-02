@@ -15,7 +15,7 @@ export const routes: Routes = [
         component: Timeline,
     },
     {
-        path: 'timetable/:events',
+        path: 'timetable',
         component: Timetable,
     },
     {

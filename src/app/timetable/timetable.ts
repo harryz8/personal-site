@@ -4,6 +4,7 @@ import { AsyncPipe } from '@angular/common';
 import { interval, map } from 'rxjs';
 import { Dictionary } from '../dictionary';
 import { ActivatedRoute } from '@angular/router';
+import { LoadTimetableJson } from '../load-timetable-json/load-timetable-json';
 
 export interface TimetableEvent {
     id: number;
@@ -18,7 +19,7 @@ export interface TimetableEvent {
 
 @Component({
   selector: 'app-timetable',
-  imports: [ AsyncPipe ],
+  imports: [ AsyncPipe, LoadTimetableJson ],
   templateUrl: './timetable.html',
   styleUrl: './timetable.scss',
 })
@@ -50,13 +51,9 @@ export class Timetable implements OnInit {
   line_height = 1;
   font_size_rem = 0.8;
 
-  constructor(private http: HttpClient, private cd: ChangeDetectorRef, private route: ActivatedRoute) {}
+  constructor(private http: HttpClient, private cd: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      let decoded_plaintext = params['events'];
-      this.timetable_events = JSON.parse(decoded_plaintext) as TimetableEvent[];
-    });
     for (let i=this.start_hour; i<24; i++) {
       this.hours.push(`${i}:00`);
     }
@@ -76,6 +73,11 @@ export class Timetable implements OnInit {
       this.font_size_rem = 0.8;
       this.cd.detectChanges();
     });
+  }
+
+  receiveEvents($event: string) {
+    this.timetable_events = JSON.parse($event) as TimetableEvent[];
+    this.cd.detectChanges();
     let timetable_display = document.getElementById("timetable_display") as HTMLDivElement;
     this.line_height = parseFloat(getComputedStyle(timetable_display).lineHeight);
   }

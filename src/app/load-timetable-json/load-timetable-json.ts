@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Fernet } from '../fernet';
 import { Router } from '@angular/router';
@@ -23,6 +23,7 @@ interface EncObject {
 export class LoadTimetableJson implements OnInit {
 
   timetable_ciphertext: Observable<EncObject> | null = null;
+  @Output() timetable_plaintext = new EventEmitter<string>();
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -43,7 +44,7 @@ export class LoadTimetableJson implements OnInit {
               let text_decoder = new TextDecoder();
               let decoded_plaintext = text_decoder.decode(uint8_plaintext);
               console.info(decoded_plaintext);
-              this.router.navigate(['/timetable', decoded_plaintext]);
+              this.timetable_plaintext.emit(decoded_plaintext);
             }).catch(err => {
               alert("Decryption failed. Check your password.");
             });
