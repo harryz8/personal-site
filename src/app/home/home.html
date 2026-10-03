@@ -1,16 +1,16 @@
 <div class="row outside h-100 w-100">
     <div class="col-md-12">
-        <div id="profile" class="row">
-            <div class="display-div col-md-8 d-flex flex-column justify-content-center" id="personal_info">
+        <div id="profile" class="row justify-content-center">
+            <div class="hc display-div col-md-6 d-flex flex-column justify-content-center" id="personal_info">
                 <div class="row"><h4>Hi, I'm Harry</h4></div>
                 <div class="row"><p>Computer Science student based in the UK &#x1F1EC;&#x1F1E7;<br />Web Development | AI | Computer Enthusiast</p></div>
             </div>
-            <div class="col-md-4">
-                <img class="display-div" src="/images/pfp.jpg" width=200 height=200 />
+            <div class="col" style="max-width: fit-content;">
+                <img class="hc display-div img-no-drag" src="/images/pfp.jpg" width=200 height=200 style="pointer-events: none;" />
             </div>
         </div>
         <div id="hire_info" class="row justify-content-center" style="margin-top: 2em;">
-            <div class="col-md-3 display-div d-flex flex-column justify-content-center">
+            <div class="hc col-md-3 display-div d-flex flex-column justify-content-center">
                 <div class="row"><p style="text-align: start; background-color: #FFE62D">Contact Info:</p></div>
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-6 contact_hover" style="background-color: #02FEE4;"><a href="http://linkedin.com/in/harry-zoeftig-1a4395352"><fa-icon [icon]="falinkedIn" /></a></div>
@@ -23,10 +23,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div style="width: 100%;">
-                    <div id="hire-me" class="button-a display-div" [ngClass]="{'hm_1' : hoverFlag}" (click)="openCV()" (mouseenter)="hoverFlag = true" (mouseleave)="hoverFlag = false">Hire Me!</div>
-                </div>
+            <div class="hc col-4 currently display-div">
+                    <div class="row h3">Currently working on:</div>
+                    <div class="row">
+                        <ul>
+                            <li><a href="https://github.com/harryz8/cmdChat">Chat app via command line</a></li>
+                            <li><a href="https://github.com/harryz8/personal-site/tree/main/src/app/timetable">HTML version of my uni timetable</a></li>
+                        </ul>
+                    </div>
             </div>
         </div>
     </div>
