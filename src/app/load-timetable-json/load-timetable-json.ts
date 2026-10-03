@@ -28,7 +28,7 @@ export class LoadTimetableJson implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    this.timetable_ciphertext = this.http.get<EncObject>("/timetable_enc.json");
+    this.timetable_ciphertext = this.http.get<EncObject>("./timetable_enc.json");
   }
 
   decryptTimetable(): void {
