@@ -59,10 +59,10 @@ export class Timetable implements OnInit {
     }
     const currentDate = new Date();
     let currentDay = currentDate.getDay();
-    if (currentDay > 5) {
+    if (currentDay > 5 || currentDay == 0) {
       currentDay = 1;
     }
-    this.day = this.days_of_the_week[currentDay-1];
+    this.day = this.days_of_the_week[(currentDay as number)-1];
     window.addEventListener("beforeprint", () => {
       this.minute_in_px /= 2;
       this.font_size_rem = 0.4;
